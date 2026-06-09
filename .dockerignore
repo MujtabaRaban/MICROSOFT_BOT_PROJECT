@@ -1,0 +1,14 @@
+**/.git
+**/.vs
+**/.idea
+**/bin
+**/obj
+**/*.user
+**/*.suo
+**/node_modules
+**/Dockerfile*
+**/docker-compose*
+**/.dockerignore
+**/README.md
+**/.env
+**/.env.*

@@ -1,0 +1,23 @@
+services:
+  smartsupportbot:
+    build:
+      context: .
+      dockerfile: SmartSupportBot/Dockerfile
+    ports:
+      - "3978:3978"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      MicrosoftAppId: ""
+      MicrosoftAppPassword: ""
+      WeatherApi__ApiKey: ${WEATHER_API_KEY:-YOUR_OPENWEATHERMAP_API_KEY}
+      CosmosDb__Endpoint: ${COSMOS_ENDPOINT:-}
+      CosmosDb__AuthKey: ${COSMOS_AUTH_KEY:-}
+      CosmosDb__DatabaseId: SmartSupportBot
+      CosmosDb__ContainerId: BotState
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3978/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    restart: unless-stopped
